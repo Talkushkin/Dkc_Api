@@ -1,5 +1,7 @@
 plugins {
-    id 'java'
+    id "java"
+    id "io.qameta.allure" version "2.9.6"
+    id "io.freefair.lombok" version "6.0.0-m2"
 }
 
 group 'org.example'
@@ -9,16 +11,53 @@ repositories {
     mavenCentral()
 }
 
+
+allure {
+    report {
+        version.set("2.18.1") // allure report https://github.com/allure-framework/allure2
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.18.1") // allure junit5 https://github.com/allure-framework/allure-java
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation(
             "io.rest-assured:rest-assured:5.1.0",
             "org.junit.jupiter:junit-jupiter:5.8.2",
             "org.slf4j:slf4j-simple:1.7.36",
             "org.assertj:assertj-core:3.19.0",
-            "org.seleniumhq.selenium:selenium-java:3.141.59"
+            "org.seleniumhq.selenium:selenium-java:3.141.59",
+            "io.qameta.allure:allure-selenide:2.18.1",
+            "com.codeborne:selenide:6.6.6",
+            "org.aeonbits.owner:owner:1.0.12",
+            "org.projectlombok:lombok:1.18.24",
+            "com.fasterxml.jackson.core:jackson-core:2.14.1",
+            "org.aeonbits.owner:owner:1.0.12"
     )
 }
 
-test {
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
+
+    test {
+        useJUnitPlatform()
+        systemProperties(System.getProperties())
+        testLogging {
+            lifecycle {
+                events "started", "skipped", "failed", "standard_error", "standard_out"
+                exceptionFormat "short"
+            }
+        }
+    }
 }

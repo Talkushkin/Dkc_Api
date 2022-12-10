@@ -1,12 +1,13 @@
 package tests;
 
-import io.restassured.RestAssured;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
 
     @BeforeAll
     static void SetUp() {
-        RestAssured.baseURI = "https://preprod.dkc.ru";
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 }
