@@ -7,18 +7,15 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
-import static org.hamcrest.Matchers.containsString;
 
 
 public class Specs  {
 
-    public static final String basicEmail = "extyl";
-    public static final String basicPassword = "extyl";
-    public static final String baseUrl = "https://reqres.in";
+
+    public static final String baseUrl = "https://preprod.dkc.ru";
 
     public static RequestSpecification request = with()
             .baseUri(baseUrl)
-            .auth().basic(basicEmail, basicPassword)
       //      .basePath("/login=yes")
             .log().uri()
             .log().body()

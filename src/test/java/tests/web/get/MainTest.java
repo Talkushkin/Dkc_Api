@@ -28,11 +28,10 @@ public class MainTest extends TestBase {
         // @formatter:on
     }
 
-
     @Test
     @Tag("MainTest")
     @Severity(CRITICAL)
-    void checkMainStatusWith400() {
+    void checkMainStatusWith404() {
         given()
                 .spec(request)
                 .when()
@@ -53,7 +52,6 @@ public class MainTest extends TestBase {
                 .then()
                 .spec(responseSpecStatus500)
                 .log().body();
-
     }
 
     @Test
@@ -67,7 +65,6 @@ public class MainTest extends TestBase {
                 .then()
                 .spec(responseSpecStatus502)
                 .log().body();
-
     }
 
     @Test
@@ -82,6 +79,5 @@ public class MainTest extends TestBase {
                 .then()
                 .spec(responseSpecStatus503)
                 .log().body();
-
     }
 }
