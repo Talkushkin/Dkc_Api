@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Dec 29 16:41:27 MSK 2022","Thu Dec 29 16:41:39 MSK 2022","11572","","tests.web.get.MainTest","","tests.web.get.MainTest","checkMainStatusWith200","checkMainStatusWith200()",""
