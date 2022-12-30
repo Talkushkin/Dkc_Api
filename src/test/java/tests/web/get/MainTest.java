@@ -14,7 +14,7 @@ import static model.Specs.*;
 public class MainTest extends TestBase {
 
     @Test
-    @Tag("MainTest")
+    @Tag("MainTestStatus200")
     @Severity(CRITICAL)
     void checkMainStatusWith200() {
 
@@ -71,7 +71,6 @@ public class MainTest extends TestBase {
     @Tag("MainTest")
     @Severity(CRITICAL)
     void checkMainStatusWith503() {
-
         given()
                 .spec(request)
                 .when()
